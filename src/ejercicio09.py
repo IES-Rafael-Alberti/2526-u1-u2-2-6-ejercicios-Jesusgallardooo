@@ -9,6 +9,7 @@ Autor: Eduardo Fdez
 Fecha: 2025-10-25
 """
 
+import math #Para poder redondear turnos hacia arriba con ceil.
 
 def simular_carrera(velocidad1: int, velocidad2: int, velocidad3: int, distancia_meta: int) -> tuple[int, int]:
     """
@@ -33,9 +34,30 @@ def simular_carrera(velocidad1: int, velocidad2: int, velocidad3: int, distancia
         - Si hay empate, gana el caracol con número más bajo
         - Todos los caracoles avanzan simultáneamente cada turno
     """
-    # TODO: Implementar la función
-    return (0, 0)
 
+    # validaciones
+    if not (1 <= velocidad1 <= 10 and 1 <= velocidad2 <= 10 and 1 <= velocidad3 <= 10):
+        return 0, 0
+    if distancia_meta <= 0:
+        return 0, 0
+    
+    # calcular turnos
+    turnosCaracol1 = math.ceil(distancia_meta/velocidad1)
+    turnosCaracol2 = math.ceil(distancia_meta/velocidad2)
+    turnosCaracol3 = math.ceil(distancia_meta/velocidad3)
+
+    turnosPorCaracol = [turnosCaracol1, turnosCaracol2, turnosCaracol3]
+
+    menosTurnos = min(turnosPorCaracol) 
+
+    if turnosPorCaracol[0] == menosTurnos:
+        ganador = 1
+    elif turnosPorCaracol[1] == menosTurnos:
+        ganador = 2
+    elif turnosPorCaracol[2] == menosTurnos:
+        ganador = 3
+    
+    return ganador, menosTurnos 
 
 def solicitar_velocidades() -> tuple[int, int, int]:
     """
