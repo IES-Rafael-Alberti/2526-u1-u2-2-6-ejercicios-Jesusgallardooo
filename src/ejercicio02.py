@@ -42,9 +42,9 @@ def clasificar_temperatura(temperatura: float) -> tuple[str, bool]:
         return "Helada", False
     elif 0 <= temperatura <= 10:
         return "Frío", False
-    elif 10.1 <= temperatura <= 20:
+    elif 10.01 <= temperatura <= 20:
         return "Templado", False
-    elif 20.1 <= temperatura <= 30:
+    elif 20.01 <= temperatura <= 30:
         return "Cálido", False
     elif temperatura > 30:
         return "Caluroso", False
